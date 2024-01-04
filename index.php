@@ -1,17 +1,21 @@
 <?php
 
-namespace Day1;
-
-$dir = '/home/china/Documentos/input.txt';
-
+// $dir ='/var/www/html/adventofcode/inputs/day1-part1-example.txt';
+$dir ='/var/www/html/adventofcode/inputs/day1-part1-input.txt';
 $input = file_get_contents($dir);
-$line = explode(PHP_EOL, $input);
+$lines = explode(PHP_EOL, $input);
+$total = 0;
+foreach ($lines as $line) {
+    $characteres = str_split($line);
+    $numericCharacteres = array_values(array_filter($characteres, fn (string $character) => is_numeric($character)));
 
-var_dump($line);
-
-
-
-function part1($input) 
-{
-
+    $firstNumber = $numericCharacteres[0];
+    $lastNumber = $numericCharacteres[count($numericCharacteres) - 1];
+    $result = "{$firstNumber}{$lastNumber}";
+    
+    $total += $result;
+    
 }
+
+echo $total;
+return $total;
